@@ -1,11 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hi</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}registro{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSerjHzSj88CktGX7alubaSuyJidQ9Ok5LgCruq82p-fJ-J_Xg/formResponse">
+        <!--actividad-->
+        <label for="entry.2007651179">actividad</label>
+        <input type="text" name="entry.2007651179">
+        <br>
+
+        <!--Tipo de documento-->
+        <label for="entry.1660968848">Tipo de documento</label>     
+        <input type="text" name="entry.1660968848">
+        <br>        
+
+        <!--Número de documento-->
+        <label for="entry.1775486401">Número de documento</label>
+        <input type="text" name="entry.1775486401">
+        <br>        
+
+        <!--Nombre 1-->        
+        <label for="entry.1900036140">Nombre 1</label>
+        <input type="text" name="entry.1900036140">
+        <br>        
+
+        <!--Nombre 2-->
+        <label for="entry.892150681">Nombre 2</label>
+        <input type="text" name="entry.892150681">
+        <br>   
+
+        <!--Apellido 1-->
+        <label for="entry.1579850154">Apellido 1</label>
+        <input type="text" name="entry.1579850154">
+        <br>   
+
+        <!--Apellido 2-->
+        <label for="entry.573263137">Apellido 2</label>
+        <input type="text" name="entry.573263137">
+        <br>   
+
+        <!--Fecha de nacimiento-->
+        <label for="entry.1382764105">Fecha de nacimiento</label>
+        <input type="text" name="entry.1382764105">
+        <br>   
+
+        <!--Género-->
+        <label for="entry.1916841877">Género</label>
+        <input type="text" name="entry.1916841877">
+        <br>
+        
+        <!--víctima del conflicto-->
+        <label for="entry.1802819843">¿Es usted víctima del conflicto?</label>
+        <input type="radio" id="si" name="entry.1802819843" value="si">
+        <label for="si"> si</label>
+        <br>
+        <input type="radio" name="entry.1802819843" id="si" value="no">
+        <label for="si"> no</label>
+        <br>
+        <!--País-->
+        <label for="entry.1107059262">País</label>
+        <input type="text" name="entry.1107059262">
+        
+        <!--Ciudad o municipio-->
+        <label for="entry.2029898475">Ciudad o municipio</label>
+        <input type="text" name="entry.2029898475">
+        
+        <!--comuna/corregimiento-->
+        <label for="entry.387209109">Comuna o corregimiento de residencia (MEDELLÍN)</label>
+        <input type="text" name="entry.387209109">
+        
+        <!--Orientación sexual-->
+        <label for="entry.1330315502">Orientación sexual</label>
+        <input type="text" name="entry.1330315502">
+        
+        <!--Condición de discapacidad-->
+        <label for="entry.1903936440">Condición de discapacidad</label>
+        <input type="text" name="entry.1903936440">
+        
+        <!--Etnia-->
+        <label for="entry.103037597">Etnia</label>
+        <input type="text" name="entry.103037597">
+        
+        <!--Organización o Institución-->
+        <label for="entry.940055907">Organización o Institución</label>
+        <input type="text" name="entry.940055907">
+        
+        <!--medio para contactar-->
+        <p>¿Desea recibir información sobre las agendas del Museo por alguno de estos medios?</p>
+        <label for="entry.495778691">Whatsapp</label>
+        <input type="checkbox" name="entry.495778691"value="WhatsApp">
+        <!--medio para contactar-->
+        <label for="entry.495778691">Correo</label>
+        <input type="checkbox" name="entry.495778691"value="Correo electronico">
+        
+        <!--Correo electrónico-->
+        <label for="entry.53517427">Correo electrónico</label>
+        <input type="email" name="entry.53517427">
+        
+        <!--Teléfono de contacto-->
+        <label for="entry.1385980096">Teléfono de contacto</label>
+        <input type="text" name="entry.1385980096">
+        
+        <button type="submit">Enviar</button>
+
+    </form>
+{% endblock %} 
