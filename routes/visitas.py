@@ -1,6 +1,15 @@
-from fastapi import APIRouter
+from fastapi import APIRouter,Request
+from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from pathlib import Path
+
 
 visitantes=APIRouter()
+
+visitantes.mount("/static", StaticFiles(directory="static"), name="static")
+BASE_DIR = Path(__file__).resolve().parent
+templates = Jinja2Templates(directory=str(Path(BASE_DIR,'../templates')))
 
 class UserForm(BaseModel):
     primer_nombre: str
