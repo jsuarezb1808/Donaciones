@@ -3,6 +3,11 @@ from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
+from fastapi import HTTPException
+from fastapi import FastAPI, Request
+
+from config.db import connection
+from models.donaciones import Donaciones
 
 
 visitantes=APIRouter()
@@ -25,3 +30,8 @@ def handle_form_data(userForm: UserForm):
 def get_form(request:Request):
     return templates.TemplateResponse(
         request=request, name="index.html")
+
+#direccion para re generar el PDF de la donacion especificada
+@visitantes.get("/visitantes/donacion")
+def get_Donacion_Status(request:Request):
+        return connection.execute(Donaciones.select()).fetchall() 

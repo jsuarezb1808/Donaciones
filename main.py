@@ -26,7 +26,3 @@ async def read_item(request: Request, id: str,item:str,param: str|None=None):
     return templates.TemplateResponse(
         request=request, name="test.html", context={"id": id}
     )
-
-
-
-

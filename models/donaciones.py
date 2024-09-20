@@ -1,6 +1,6 @@
 from sqlalchemy import Table,Column
 from sqlalchemy.sql.sqltypes import Integer,String,Boolean,DATE  
-from config.db import meta
+from config.db import meta,engine
 
 Donaciones = Table("donaciones",meta, 
                    Column("UUID",Integer,primary_key=True),
@@ -17,3 +17,4 @@ Donaciones = Table("donaciones",meta,
                    Column("DonacionUpdate",DATE),
                 )
 
+meta.create_all(engine)
