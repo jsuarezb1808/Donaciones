@@ -1,16 +1,11 @@
 services:
-  postgres:
-    image: postgres:16-alpine
-    ports:
-      - 5432:5432
+  db:
+    image: mysql:9
+    restart: always
     environment:
-      POSTGRES_USER: mcm-user
-      POSTGRES_PASSWORD: mcm-password
-      POSTGRES_DB: mcm-donaciones
-  mailhog:
-    image: mailhog/mailhog
-    container_name: mailhog
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      - 1025:1025
-      - 8025:8025
-
+      - 3306:3306
