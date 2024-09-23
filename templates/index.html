@@ -359,14 +359,14 @@
     <div>
         <p>¿Desea recibir información sobre las agendas del Museo por alguno de estos medios?</p>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-whatsapp" name="contactar_whatsapp">
+            <input class="form-check-input" type="checkbox" id="checkbox-whatsapp" name="contactar_whatsapp" value="correo">
             <label class="form-check-label" for="checkbox-whatsapp">
                 Whatsapp
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-correo" name="contactar_correo">
+            <input class="form-check-input" type="checkbox" id="checkbox-correo" name="contactar_correo" value="correo">
             <label class="form-check-label" for="checkbox-correo">
                 Correo
             </label>
@@ -379,18 +379,24 @@
         <input class="form-control" type="text" name="telefono" id="telefono">
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-hacer-donacion" name="hacer_donacion">
+            <input class="form-check-input" type="checkbox" id="checkbox-hacer-donacion" name="hacer_donacion" value="True">
             <label class="form-check-label" for="checkbox-hacer-donacion">
                 ¿Desea hacer una donación?
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-correo" name="contactar_correo">
-            <label class="form-check-label" for="checkbox-correo">
+            <input class="form-check-input" type="checkbox" id="terminos-condiciones" name="terminos-condiciones" value="True">
+            <label class="form-check-label" for="terminos-condiciones">
                 ¿Acepta los <a href="/terminos-y-condiciones">Términos y condiciones</a>?
             </label>
         </div>
+
+        <div>
+            <label class="form-label" for="valor_donacion">Cuanto Desea donar?</label>
+            <input class="form-control" type="text" name="valor-donacion" id="valor-donacion">
+        </div>
+        
 
         <button class="btn btn-primary" type="submit">Enviar</button>
     </div>
