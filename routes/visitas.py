@@ -1,16 +1,15 @@
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.encoders import jsonable_encoder
+from fastapi import HTTPException, APIRouter, FastAPI, Request
 
 from pathlib import Path
-from fastapi import HTTPException
-from fastapi import APIRouter, FastAPI, Request
 
 from config.db import connection
 from models.donaciones import Donaciones
 from schemas.visitas import UserForm
 
-import uuid
-import datetime
+from datetime import datetime 
 
 visitantes=APIRouter()
 
@@ -48,22 +47,22 @@ async def Store_visitantes(userForm:UserForm):
         "valor_donacion":userForm.valor_donacion
     }
     new_donacion={
-        "UUID":uuid.uuid4(),
-        "Nombre1":new_visita.primer_nombre,
-        "Nombre2":new_visita.segundo_nombre,
-        "apellido1":new_visita.primer_apellido,
-        "apellido2":new_visita.segundo_apellido,
-        "TipoDocumento":new_visita.tipo_documento,
-        "NumDoc":new_visita.numero_documento,
-        "InteresDonacion":new_visita.hacer_donacion,
-        "AceptaTerminos":new_visita.terminos_condiciones,
-        "Valor":new_visita.valor_donacion,
+        "Nombre1":new_visita["primer_nombre"],
+        "Nombre2":new_visita["segundo_nombre"],
+        "Apellido1":new_visita["primer_apellido"],
+        "Apellido2":new_visita["segundo_apellido"],
+        "TipoDocumento":new_visita["tipo_documento"],
+        "NumDoc":new_visita["numero_documento"],
+        "InteresDonacion":new_visita["hacer_donacion"],
+        "AceptaTerminos":new_visita["terminos_condiciones"],
+        "Valor":new_visita["valor_donacion"],
         "EstatusDonacion":"False",
-        "DonacionUpdate":datetime.today().strftime('%Y-%m-%d %H:%M:%S'),
+        "DonacionUpdate":datetime.now()
     }
-    resultado=connection.execute(Donaciones.insert().values(new_donacion))
+    resultado=connection.execute(Donaciones.insert(),new_donacion)
+    connection.commit()
     print(resultado)
-    return Response(content=resultado)
+
 
 #ruta encargada de mostrar el formulario al usuario
 @visitantes.get("/")
@@ -71,10 +70,13 @@ def get_visitantes(request:Request):
     return templates.TemplateResponse(
         request=request, name="index.html")
 
+
 #direccion para re generar el PDF de la donacion especificada
 #a peticion
-
 #ACTUALMENTE SOLO MUESTRA LOS DATOS EN LA BASE DE DATOS
 @visitantes.get("/visitantes/donacion")
 def get_Donacion_Status(request:Request):
-        return connection.execute(Donaciones.select()).fetchall() 
+        print(connection.execute(Donaciones.select()).fetchall())
+        return str("")
+        
+        
