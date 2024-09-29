@@ -28,7 +28,7 @@
 
         <div>
             <label class="form-label" for="tipo-documento">Tipo de Documento</label>
-            <select id="tipo-documento" class="form-select" aria-label="Selector de tipo de documento" name="tipo-documento">
+            <select id="tipo-documento" class="form-select" aria-label="Selector de tipo de documento" name="tipo_documento">
                 <option value="NUIP">NUIP</option>
                 <option value="NIP">NIP</option>
                 <option value="registro-civil">REGISTRO CIVIL</option>
@@ -43,27 +43,27 @@
 
         <div>
             <label class="form-label" for="numero-documento">Número de documento</label>
-            <input class="form-control" type="text" name="numero-documento" id="numero-documento">
+            <input class="form-control" type="text" name="numero_documento" id="numero-documento">
         </div>
 
         <div>
             <label class="form-label" for="primer-nombre">Primer Nombre*</label>
-            <input class="form-control" type="text" name="primer-nombre" id="primer-nombre">
+            <input class="form-control" type="text" name="primer_nombre" id="primer-nombre">
         </div>
 
         <div>
             <label class="form-label" for="segundo-nombre">Segundo Nombre</label>
-            <input class="form-control" type="text" name="segundo-nombre" id="segundo-nombre">
+            <input class="form-control" type="text" name="segundo_nombre" id="segundo-nombre">
         </div>
 
         <div>
             <label class="form-label" for="primer-apellido">Primer Apellido*</label>
-            <input class="form-control" type="text" name="primer-apellido" id="primer-apellido">
+            <input class="form-control" type="text" name="primer_apellido" id="primer-apellido">
         </div>
 
         <div>
             <label class="form-label" for="segundo-apellido">Segundo Apellido</label>
-            <input class="form-control" type="text" name="segundo-apellido" id="segundo-apellido">
+            <input class="form-control" type="text" name="segundo_apellido" id="segundo-apellido">
         </div>
 
         <div>
@@ -338,7 +338,7 @@
         </div>
 
         <div>
-            <label class="form-label" for="etnia">Condición de discapacidad</label>
+            <label class="form-label" for="etnia">Etnia</label>
             <select id="etnia" class="form-select" aria-label="Selector de etnia" name="etnia">
                 <option value="NINGUNO">NINGUNA</option>
                 <option value="AFRODESCENDIENTE">AFRODESCENDIENTE</option>
@@ -359,14 +359,14 @@
     <div>
         <p>¿Desea recibir información sobre las agendas del Museo por alguno de estos medios?</p>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-whatsapp" name="contactar_whatsapp">
+            <input class="form-check-input" type="checkbox" id="checkbox-whatsapp" name="contactar_whatsapp" value="Whatsapp">
             <label class="form-check-label" for="checkbox-whatsapp">
                 Whatsapp
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-correo" name="contactar_correo">
+            <input class="form-check-input" type="checkbox" id="checkbox-correo" name="contactar_correo" value="correo">
             <label class="form-check-label" for="checkbox-correo">
                 Correo
             </label>
@@ -379,18 +379,24 @@
         <input class="form-control" type="text" name="telefono" id="telefono">
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-hacer-donacion" name="hacer_donacion">
+            <input class="form-check-input" type="checkbox" id="checkbox-hacer-donacion" name="hacer_donacion" value="True">
             <label class="form-check-label" for="checkbox-hacer-donacion">
                 ¿Desea hacer una donación?
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox-correo" name="contactar_correo">
-            <label class="form-check-label" for="checkbox-correo">
+            <input class="form-check-input" type="checkbox" id="terminos-condiciones" name="terminos_condiciones" value="True">
+            <label class="form-check-label" for="terminos-condiciones">
                 ¿Acepta los <a href="/terminos-y-condiciones">Términos y condiciones</a>?
             </label>
         </div>
+
+        <div>
+            <label class="form-label" for="valor_donacion">Cuanto Desea donar?</label>
+            <input class="form-control" type="text" name="valor_donacion" id="valor-donacion">
+        </div>
+        
 
         <button class="btn btn-primary" type="submit">Enviar</button>
     </div>
@@ -405,9 +411,15 @@ form.addEventListener("submit", async (e) => {
     console.log(JSON.stringify(Object.fromEntries(formData)));
     let response  = await fetch("/", {
         method: "POST",
-        body: JSON.stringify(formData)
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(Object.fromEntries(formData))
     });
     let responseBody = await response.json();
+    if(response.status==200){
+        window.location.replace("/");
+    }
     })
 </script>
 {% endblock %}
